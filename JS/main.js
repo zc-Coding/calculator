@@ -41,7 +41,7 @@ function Handle_Operator(Next_Operator) {
     //when a operator key is pressed we convert the current number
     //displayed on the screen to a number and then store the result in
     //Calculator.FirstOperand if it doesn't already exsist
-    const Value_of_Input = parseFloat(result);
+    const Value_of_Input = parseFloat(result); //Display_Value?
     if (operator && Calculator.Wait_Second_Operand) {
         Calculator.operator = Next_Operator;
         return;
@@ -68,7 +68,7 @@ const Perform_Calculation = {
     '*': (First_Operand, Second_Operand) => First_Operand * Second_Operand,
     '+': (First_Operand, Second_Operand) => First_Operand + Second_Operand,
     '-': (First_Operand, Second_Operand) => First_Operand - Second_Operand,
-    '=': (First_Operand, Second_Operand) => First_Operand = Second_Operand
+    '=': (First_Operand, Second_Operand) => Second_Operand
 };
 
 function Calculator_Reset() {
@@ -92,7 +92,9 @@ keys.addEventListener('click', (Event) => {
     if (!target.matches('button')) {
         return;
     }
-    // ensures tthat AC clears the numbers from the calculator
+    // ensures that AC clears the numbers from the calculator
+
+    //MISSING SOME CODE FROM TUTORIAL
     if (target.classList.contains('all-clear')) {
         Calculator_Reset();
         Update_Display();
