@@ -41,7 +41,7 @@ function Handle_Operator(Next_Operator) {
     //when a operator key is pressed we convert the current number
     //displayed on the screen to a number and then store the result in
     //Calculator.FirstOperand if it doesn't already exsist
-    const Value_of_Input = parseFloat(result); //Display_Value?
+    const Value_of_Input = parseFloat(Display_Value); 
     if (operator && Calculator.Wait_Second_Operand) {
         Calculator.operator = Next_Operator;
         return;
@@ -93,8 +93,18 @@ keys.addEventListener('click', (Event) => {
         return;
     }
     // ensures that AC clears the numbers from the calculator
+    if (target.classList.contains('operator')) {
+        Handle_Operator(target.value);
+        Update_Display();
+        return;
+    }
+    
+    if(target.classList.contains('decimal')) {
+        Calculator_Reset();
+        Update_Display();
+        return;
+    }
 
-    //MISSING SOME CODE FROM TUTORIAL
     if (target.classList.contains('all-clear')) {
         Calculator_Reset();
         Update_Display();
